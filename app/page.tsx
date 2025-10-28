@@ -1,3 +1,9 @@
-export default function Home() {
-	return <h1 className='text-3xl font-bold'>Happoint</h1>;
+import { currentUser } from '@clerk/nextjs/server';
+import { redirect } from 'next/navigation';
+
+export default async function HomePage() {
+	const user = await currentUser();
+	// if (!user) return <LandingPage />;
+
+	return redirect('events');
 }
