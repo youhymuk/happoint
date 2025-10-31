@@ -1,3 +1,6 @@
 {
-	"cSpell.words": ["Happoint"]
+	"cSpell.words": [
+		"Happoint"
+	],
+	"typescript.tsdk": "node_modules/typescript/lib",
 }
