@@ -1,28 +1,24 @@
 import { SignInButton, SignUpButton } from '@clerk/nextjs';
-import Image from 'next/image';
-import Link from 'next/link';
+import Logo from './Logo';
 
 export default function PublicHeader({}) {
 	return (
-		<header>
-			<nav>
-				<Link href='/login'>
-					<Image
-						src='/assets/logo.png'
-						alt='Happoint logo'
-						width={100}
-						height={100}
-					/>
-				</Link>
-				<ul>
+		<header className='sticky top-0 z-50 border-b border-border bg-header-bg shadow-sm'>
+			<nav className='container mx-auto flex items-center justify-between px-4 py-4'>
+				<Logo />
+				<ul className='flex items-center gap-4'>
 					<li>
 						<SignInButton>
-							<button>Login</button>
+							<button className='btn-accent px-4 py-2 text-sm font-medium transition-opacity hover:opacity-90'>
+								Login
+							</button>
 						</SignInButton>
 					</li>
 					<li>
 						<SignUpButton>
-							<button>Register</button>
+							<button className='btn-accent px-4 py-2 text-sm font-medium transition-opacity hover:opacity-90'>
+								Register
+							</button>
 						</SignUpButton>
 					</li>
 				</ul>

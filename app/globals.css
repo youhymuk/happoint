@@ -1,24 +1,100 @@
 @import 'tailwindcss';
 
 :root {
-	--background: #ffffff;
-	--foreground: #171717;
+	--background: #f7f5f2;
+	--foreground: #111827;
+	--header-bg: #f3efe8;
+	--primary: #ff94d2;
+	--primary-hover: #ff7bc8;
+	--secondary: #645335;
+	--secondary-bg: #645335;
+	--border: #f3efe8;
+	--border-light: #f3efe8;
+	--background-secondary: #f3efe8;
+	--text-primary: #111827;
+	--text-secondary: #645335;
+	--text-muted: #645335;
+	--text-nav: #262623;
+	--button-primary-gradient: linear-gradient(
+		to bottom,
+		hsl(0 0% 0% / 0.8),
+		black
+	);
+	--button-secondary-bg: #645335;
+	--button-secondary-text: #645335;
+	--button-accent-bg: #ff94d2;
+	--button-accent-text: #262623;
+	--button-accent-border: rgba(0, 0, 0, 0);
+	--success: #10b981;
+	--error: #ef4444;
+	--warning: #f59e0b;
 }
 
 @theme inline {
 	--color-background: var(--background);
 	--color-foreground: var(--foreground);
+	--color-header-bg: var(--header-bg);
+	--color-primary: var(--primary);
+	--color-primary-hover: var(--primary-hover);
+	--color-secondary: var(--secondary);
+	--color-secondary-bg: var(--secondary-bg);
+	--color-border: var(--border);
+	--color-text-primary: var(--text-primary);
+	--color-text-secondary: var(--text-secondary);
+	--color-text-muted: var(--text-muted);
+	--color-text-nav: var(--text-nav);
+	--color-button-accent-bg: var(--button-accent-bg);
+	--color-button-accent-text: var(--button-accent-text);
+	--color-button-secondary-bg: var(--button-secondary-bg);
+	--color-button-secondary-text: var(--button-secondary-text);
 	--font-sans: var(--font-inter);
 }
 
-@media (prefers-color-scheme: dark) {
-	:root {
-		--background: #0a0a0a;
-		--foreground: #ededed;
-	}
+/* Custom color utilities */
+.text-primary {
+	color: var(--text-primary);
+}
+.text-secondary {
+	color: var(--text-secondary);
+}
+.text-muted {
+	color: var(--text-muted);
+}
+.text-nav {
+	color: var(--text-nav);
+}
+.border-primary {
+	border-color: var(--primary);
 }
 
 body {
 	background: var(--background);
 	color: var(--foreground);
+	font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+/* Button utility classes */
+.btn-primary {
+	background: var(--button-primary-gradient);
+	color: white;
+}
+
+.btn-secondary {
+	background-color: var(--button-secondary-bg);
+	color: var(--button-secondary-text);
+}
+
+.btn-accent {
+	background-color: var(--button-accent-bg);
+	color: var(--button-accent-text);
+	border: none;
+	border-bottom-left-radius: 30px;
+	border-bottom-right-radius: 30px;
+	border-top-right-radius: 30px;
 }
