@@ -1,14 +1,12 @@
-import { auth } from '@clerk/nextjs/server';
 import Link from 'next/link';
 
+import { requireAuthWithRedirect } from '@/app/lib/utils';
 import EventCard from '@/components/Events/EventCard';
 import EventsEmptyState from '@/components/Events/EventsEmptyState';
 import { getEvents } from '@/server/actions/events';
 
 export default async function EventsPage() {
-	const { userId, redirectToSignIn } = await auth();
-
-	if (!userId) return redirectToSignIn();
+	const { userId } = await requireAuthWithRedirect();
 
 	const events = await getEvents(userId);
 

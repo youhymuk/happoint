@@ -2,11 +2,7 @@
 
 import { and, desc, eq } from 'drizzle-orm';
 
-import {
-	formatError,
-	getAuthenticatedUserId,
-	ValidationError,
-} from '@/app/lib/utils';
+import { formatError, requireUserId, ValidationError } from '@/app/lib/utils';
 import { EventFormDataType } from '@/components/forms/EventForm';
 import { db } from '@/drizzle/db';
 import { EventTable } from '@/drizzle/schema';
@@ -35,7 +31,7 @@ export async function withErrorHandling<T>(
 
 export async function deleteEvent(eventId: string) {
 	await withErrorHandling(async () => {
-		const userId = await getAuthenticatedUserId();
+		const userId = await requireUserId();
 
 		await db
 			.delete(EventTable)
@@ -50,9 +46,16 @@ export async function updateEvent(
 	formData: EventFormDataType
 ) {
 	await withErrorHandling(async () => {
-		const userId = await getAuthenticatedUserId();
+		const userId = await requireUserId();
 
-		const { rows } = await db
+		const event = await db.query.EventTable.findFirst({
+			where: ({ id, clerkUserId }) =>
+				and(eq(id, eventId), eq(clerkUserId, userId)),
+		});
+
+		if (!event) throw new ValidationError('Event not found');
+
+		await db
 			.update(EventTable)
 			.set({
 				...formData,
@@ -60,14 +63,12 @@ export async function updateEvent(
 			.where(
 				and(eq(EventTable.id, eventId), eq(EventTable.clerkUserId, userId))
 			);
-
-		if (rows.length === 0) throw new ValidationError('Event not found');
 	}, 'update event');
 }
 
 export async function createEvent(formData: EventFormDataType) {
 	await withErrorHandling(async () => {
-		const userId = await getAuthenticatedUserId();
+		const userId = await requireUserId();
 
 		const { success, data } = eventFormSchema.safeParse(formData);
 
@@ -91,6 +92,21 @@ export async function getEvents(userId: string) {
 			return events;
 		},
 		'get events',
+		false
+	);
+}
+
+export async function getEvent(eventId: string, userId: string) {
+	return withErrorHandling(
+		async () => {
+			const event = await db.query.EventTable.findFirst({
+				where: ({ id, clerkUserId }) =>
+					and(eq(id, eventId), eq(clerkUserId, userId)),
+			});
+
+			return event;
+		},
+		'get event',
 		false
 	);
 }
