@@ -1,4 +1,5 @@
 import { SignInButton, SignUpButton } from '@clerk/nextjs';
+
 import Logo from './Logo';
 
 export default function PublicHeader({}) {

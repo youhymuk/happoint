@@ -3,6 +3,7 @@
 import { PrivateRoutesConfig } from '@/constants';
 import { UserButton } from '@clerk/nextjs';
 import Link from 'next/link';
+
 import Logo from './Logo';
 
 export default function PrivateHeader() {
