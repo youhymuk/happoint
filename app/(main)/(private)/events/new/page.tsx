@@ -1,5 +1,6 @@
-import EventForm from '@/components/forms/EventForm';
 import Link from 'next/link';
+
+import EventForm from '@/components/forms/EventForm';
 
 export default function NewEventPage() {
 	return (

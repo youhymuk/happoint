@@ -50,6 +50,7 @@ export default function EventForm({ event }: EventFormProps) {
 			} else {
 				await createEvent(data);
 			}
+			router.push('/events');
 		} catch (error: unknown) {
 			setError('root', {
 				message:
@@ -190,7 +191,7 @@ export default function EventForm({ event }: EventFormProps) {
 							type='button'
 							disabled={isDeletePending || isSubmitting}
 							onClick={() => handleEventDelete(event.id)}
-							className='btn-secondary rounded-lg px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-50'
+							className='bg-white cursor-pointer rounded-lg px-4 py-2 text-sm font-semibold text-secondary transition-opacity hover:opacity-90 disabled:opacity-50'
 						>
 							Delete
 						</button>
@@ -198,7 +199,7 @@ export default function EventForm({ event }: EventFormProps) {
 					<button
 						type='submit'
 						disabled={isSubmitting}
-						className='btn-primary rounded-lg px-6 py-2 text-sm font-semibold shadow-sm transition-opacity hover:opacity-90 disabled:opacity-50'
+						className='btn-primary cursor-pointer rounded-lg px-6 py-2 text-sm font-semibold shadow-sm transition-opacity hover:opacity-90 disabled:opacity-50'
 					>
 						{isSubmitting ? 'Saving...' : 'Save Event'}
 					</button>
