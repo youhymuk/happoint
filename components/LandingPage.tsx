@@ -1,7 +1,6 @@
 'use client';
 
 import { SignInButton, SignUpButton } from '@clerk/nextjs';
-import Link from 'next/link';
 
 export default function LandingPage() {
 	return (
@@ -9,7 +8,7 @@ export default function LandingPage() {
 			{/* Hero Section */}
 			<section className='container mx-auto px-4 py-20'>
 				<div className='mx-auto max-w-4xl text-center'>
-					<h1 className='mb-6 text-5xl font-bold tracking-tight text-primary sm:text-6xl'>
+					<h1 className='mb-6 text-5xl font-bold tracking-tight leading-[1.2] text-primary sm:text-6xl'>
 						Manage Your Schedule
 						<br />
 						<span className='text-primary'>Effortlessly</span>
@@ -21,12 +20,12 @@ export default function LandingPage() {
 					</p>
 					<div className='flex flex-col items-center justify-center gap-4 sm:flex-row'>
 						<SignUpButton>
-							<button className='btn-accent px-8 py-3 text-base font-semibold shadow-lg transition-opacity hover:opacity-90 hover:shadow-xl'>
+							<button className='btn-accent cursor-pointer px-8 py-3 text-base font-semibold shadow-lg transition-opacity hover:opacity-90 hover:shadow-xl'>
 								Get Started Free
 							</button>
 						</SignUpButton>
 						<SignInButton>
-							<button className='btn-accent px-8 py-3 text-base font-semibold transition-opacity hover:opacity-90'>
+							<button className='btn-accent cursor-pointer px-8 py-3 text-base font-semibold shadow-lg transition-opacity hover:opacity-90 hover:shadow-xl'>
 								Sign In
 							</button>
 						</SignInButton>
