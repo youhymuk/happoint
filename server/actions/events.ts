@@ -2,11 +2,11 @@
 
 import { and, desc, eq } from 'drizzle-orm';
 
-import { formatError, requireUserId, ValidationError } from '@/app/lib/utils';
 import { EventFormDataType } from '@/components/forms/EventForm';
 import { db } from '@/drizzle/db';
 import { EventTable } from '@/drizzle/schema';
 import { eventFormSchema } from '@/schema/event';
+import { formatError, requireUserId, ValidationError } from '@/server/utils';
 import { revalidatePath } from 'next/cache';
 
 export async function withErrorHandling<T>(

@@ -1,9 +1,9 @@
 import Link from 'next/link';
 
-import { requireAuthWithRedirect } from '@/app/lib/utils';
 import EventCard from '@/components/Events/EventCard';
 import EventsEmptyState from '@/components/Events/EventsEmptyState';
 import { getEvents } from '@/server/actions/events';
+import { requireAuthWithRedirect } from '@/server/utils';
 
 export default async function EventsPage() {
 	const { userId } = await requireAuthWithRedirect();

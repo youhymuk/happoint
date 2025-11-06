@@ -1,6 +1,6 @@
-import { requireAuthWithRedirect } from '@/app/lib/utils';
 import EventForm from '@/components/forms/EventForm';
 import { getEvent } from '@/server/actions/events';
+import { requireAuthWithRedirect } from '@/server/utils';
 
 export default async function EditEventPage({
 	params,
