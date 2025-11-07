@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
-import EventCard from '@/components/Events/EventCard';
-import EventsEmptyState from '@/components/Events/EventsEmptyState';
+import EventCard from '@/components/events/EventCard';
+import EventsEmptyState from '@/components/events/EventsEmptyState';
 import { getEvents } from '@/server/actions/events';
 import { requireAuthWithRedirect } from '@/server/utils';
 

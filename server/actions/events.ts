@@ -7,6 +7,7 @@ import { db } from '@/drizzle/db';
 import { EventTable } from '@/drizzle/schema';
 import { eventFormSchema } from '@/schema/event';
 import { formatError, requireUserId, ValidationError } from '@/server/utils';
+import { PublicEventType } from '@/types/events';
 import { revalidatePath } from 'next/cache';
 
 export async function withErrorHandling<T>(
@@ -107,6 +108,24 @@ export async function getEvent(eventId: string, userId: string) {
 			return event;
 		},
 		'get event',
+		false
+	);
+}
+
+export async function getPublicEvents(clerkUserId: string) {
+	return withErrorHandling(
+		async () => {
+			const events = await db.query.EventTable.findMany({
+				where: and(
+					eq(EventTable.clerkUserId, clerkUserId),
+					eq(EventTable.isActive, true)
+				),
+				orderBy: ({ name }, { asc, sql }) => asc(sql`lower(${name})`),
+			});
+
+			return events as PublicEventType[];
+		},
+		'get events',
 		false
 	);
 }
