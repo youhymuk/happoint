@@ -31,7 +31,9 @@ export default function PublicProfile({
 		const fetchEvents = async () => {
 			try {
 				setIsLoading(true);
+
 				const events = await getPublicEvents(userId);
+
 				setEvents(events);
 			} catch (error) {
 				console.error(error); // TODO: Handle error
@@ -46,18 +48,17 @@ export default function PublicProfile({
 
 	return (
 		<div className='max-w-5xl mx-auto p-5'>
-			{isCurrentUser && (
-				<div className='flex items-center gap-2'>
-					<EyeIcon />
-					<p>This is how users see your public profile</p>
-				</div>
-			)}
 			<h1>{userName}</h1>
-
 			{isCurrentUser && (
-				<div className='flex items-center gap-2'>
-					<CopyButton value={profileUrl} name='public profile URL' />
-				</div>
+				<>
+					<div className='flex items-center gap-2'>
+						<EyeIcon />
+						<p>This is how users see your public profile</p>
+					</div>
+					<div className='flex items-center gap-2'>
+						<CopyButton value={profileUrl} name='public profile URL' />
+					</div>
+				</>
 			)}
 			<div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
 				<h2>Time to meet</h2>

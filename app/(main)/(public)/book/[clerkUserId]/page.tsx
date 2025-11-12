@@ -1,7 +1,7 @@
 import PublicProfile from '@/components/PublicProfile';
 import { clerkClient } from '@clerk/nextjs/server';
 
-export default async function BookingPage({
+export default async function PublicProfilePage({
 	params,
 }: {
 	params: Promise<{ clerkUserId: string }>;
@@ -9,6 +9,7 @@ export default async function BookingPage({
 	const { clerkUserId } = await params;
 	const client = await clerkClient();
 	const user = await client.users.getUser(clerkUserId);
+
 	const userName =
 		user.fullName ||
 		`${user.firstName} ${user.lastName}` ||
